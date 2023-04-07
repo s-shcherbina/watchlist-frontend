@@ -5,8 +5,8 @@ import { AppErrors } from '../../common/errors';
 import { login } from '../../store/slice/auth';
 import { instance } from '../../utils/axios';
 import { useAppDispatch } from '../../utils/hooks';
-import LoginPage from './login';
-import RegisterPage from './register';
+import Login from './login';
+import Register from './register';
 import './style.css';
 
 const AuthRootPage: React.FC = (): JSX.Element => {
@@ -61,13 +61,13 @@ const AuthRootPage: React.FC = (): JSX.Element => {
           }}
         >
           {pathname === '/login' ? (
-            <LoginPage
+            <Login
               setEmail={setEmail}
               setPassword={setPassword}
               navigate={navigate}
             />
           ) : pathname === '/register' ? (
-            <RegisterPage
+            <Register
               setName={setName}
               setUsername={setUsername}
               setEmail={setEmail}

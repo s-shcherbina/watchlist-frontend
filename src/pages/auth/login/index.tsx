@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { IPropsLogin } from '../../../common/types/auth';
 
-const LoginPage: React.FC<IPropsLogin> = ({
+const Login: React.FC<IPropsLogin> = ({
   setEmail,
   setPassword,
   navigate,
@@ -79,4 +79,4 @@ const LoginPage: React.FC<IPropsLogin> = ({
   );
 };
 
-export default LoginPage;
+export default Login;

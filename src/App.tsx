@@ -3,7 +3,10 @@ import { createContext, FC, useMemo, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layout';
 import AuthRootPage from './pages/auth';
-import HomePage from './pages/home';
+import Home from './pages/home';
+import News from './pages/news';
+import Settings from './pages/settings';
+import Watchlist from './pages/watchlist';
 import PrivateRoute from './utils/router/private-route';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
@@ -26,7 +29,10 @@ const App: FC = (): JSX.Element => {
         <Routes>
           <Route element={<Layout />}>
             <Route element={<PrivateRoute />}>
-              <Route path='/' element={<HomePage />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/watchlist' element={<Watchlist />} />
+              <Route path='/settings' element={<Settings />} />
+              <Route path='/news' element={<News />} />
             </Route>
             <Route path='login' element={<AuthRootPage />} />
             <Route path='register' element={<AuthRootPage />} />

@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, useMediaQuery } from '@mui/material';
+import { Box, Stack, useMediaQuery } from '@mui/material';
 import { FC, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SideBar from '../side-bar';
@@ -17,8 +17,8 @@ const Layout: FC = (): JSX.Element => {
     <Box
       display={isNonMobile ? 'flex' : 'block'}
       // justifyContent='space-between'
-      width='100%'
-      height='100%'
+      // width='100%'
+      // height='100%'
     >
       <SideBar
         isNonMobile={isNonMobile}

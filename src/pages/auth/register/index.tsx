@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { IPropsRegister } from '../../../common/types/auth';
 
-const RegisterPage: React.FC<IPropsRegister> = ({
+const Register: React.FC<IPropsRegister> = ({
   setName,
   setUsername,
   setEmail,
@@ -113,4 +113,4 @@ const RegisterPage: React.FC<IPropsRegister> = ({
   );
 };
 
-export default RegisterPage;
+export default Register;

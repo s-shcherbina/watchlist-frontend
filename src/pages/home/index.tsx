@@ -1,7 +1,5 @@
-import { Box } from '@mui/material';
-
-const HomePage: React.FC = (): JSX.Element => {
-  return <Box sx={{ border: 'solid' }}>HomePage</Box>;
+const Home: React.FC = (): JSX.Element => {
+  return <h1>Home</h1>;
 };
 
-export default HomePage;
+export default Home;
