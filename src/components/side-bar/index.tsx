@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ISidebarProps } from '../../common/types/side-bar';
-import { ChevronLeftOutlined, LogoutOutlined } from '@mui/icons-material';
+import { ChevronLeftOutlined } from '@mui/icons-material';
 import {
   Box,
   Divider,
@@ -11,7 +11,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { navMenu } from '../../common/moks';
+import { logout, navMenu } from '../../common/moks';
 import Logo from '../../assets/logo.png';
 import SideBarButton from '../helpers/side-bar-button';
 
@@ -21,13 +21,8 @@ const SideBar: FC<ISidebarProps> = ({
   isOpen,
   setIsOpen,
 }): JSX.Element => {
-  // const [active, setActive] = useState('');
   const { pathname } = useLocation();
   const theme = useTheme();
-
-  // useEffect(() => {
-  //   setActive(pathname);
-  // }, [pathname]);
 
   return (
     <Box component='nav'>
@@ -38,7 +33,7 @@ const SideBar: FC<ISidebarProps> = ({
           variant='persistent'
           anchor='left'
           sx={{
-            border: 'solid',
+            // border: 'solid',
             width: drawerWidth,
             '& .MuiDrawer-paper': {
               color: theme.palette.text.secondary,
@@ -91,9 +86,9 @@ const SideBar: FC<ISidebarProps> = ({
             <Divider sx={{ mt: 3 }} />
             <SideBarButton
               pathname={pathname}
-              path={'/login'}
-              icon={<LogoutOutlined />}
-              name={'Выход'}
+              path={logout.path}
+              icon={logout.icon}
+              name={logout.name}
             />
           </List>
         </Drawer>
