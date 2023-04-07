@@ -1,12 +1,12 @@
-import { Box } from '@mui/material';
+import { Paper } from '@mui/material';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppErrors } from '../../common/errors';
 import { login } from '../../store/slice/auth';
 import { instance } from '../../utils/axios';
 import { useAppDispatch } from '../../utils/hooks';
-import LoginPage from './login';
-import RegisterPage from './register';
+import Login from './login';
+import Register from './register';
 import './style.css';
 
 const AuthRootPage: React.FC = (): JSX.Element => {
@@ -49,22 +49,25 @@ const AuthRootPage: React.FC = (): JSX.Element => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='root'>
-        <Box
-          display='flex'
-          flexDirection='column'
-          margin='auto'
-          borderRadius={8}
-          boxShadow={'-3px -2px 20px 1px #202020'}
-          sx={{ p: { xs: 1, sm: 5 }, width: { xs: 300, sm: 500, md: 600 } }}
+        <Paper
+          elevation={6}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            m: 'auto',
+            p: { xs: 1, sm: 5 },
+            width: { xs: 300, sm: 500, md: 600 },
+            borderRadius: 6,
+          }}
         >
           {pathname === '/login' ? (
-            <LoginPage
+            <Login
               setEmail={setEmail}
               setPassword={setPassword}
               navigate={navigate}
             />
           ) : pathname === '/register' ? (
-            <RegisterPage
+            <Register
               setName={setName}
               setUsername={setUsername}
               setEmail={setEmail}
@@ -73,7 +76,7 @@ const AuthRootPage: React.FC = (): JSX.Element => {
               navigate={navigate}
             />
           ) : null}
-        </Box>
+        </Paper>
       </div>
     </form>
   );

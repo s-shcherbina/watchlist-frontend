@@ -5,10 +5,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { blue } from '@mui/material/colors';
 import { IPropsRegister } from '../../../common/types/auth';
 
-const RegisterPage: React.FC<IPropsRegister> = ({
+const Register: React.FC<IPropsRegister> = ({
   setName,
   setUsername,
   setEmail,
@@ -104,14 +103,14 @@ const RegisterPage: React.FC<IPropsRegister> = ({
       >
         <Typography variant='body1'>У Вас ecть аккаунт?</Typography>
         <ListItemButton
-          sx={{ ml: 1, color: blue[700], borderRadius: 5 }}
+          sx={{ ml: 1, borderRadius: 5 }}
           onClick={() => navigate('/login')}
         >
-          <Typography>Войти</Typography>
+          <Typography color={'primary'}>Войти</Typography>
         </ListItemButton>
       </Box>
     </>
   );
 };
 
-export default RegisterPage;
+export default Register;
