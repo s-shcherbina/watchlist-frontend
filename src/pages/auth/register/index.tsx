@@ -10,8 +10,8 @@ import { IPropsRegister } from '../../../common/types/auth';
 const Register: React.FC<IPropsRegister> = ({
   setName,
   setUsername,
-  setEmail,
-  setPassword,
+  // setEmail,
+  // setPassword,
   setConfirmPassword,
   navigate,
 }): JSX.Element => {
@@ -54,7 +54,7 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setEmail(e.target.value)}
+        // onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
         size='small'
@@ -66,7 +66,7 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setPassword(e.target.value)}
+        // onChange={(e) => setPassword(e.target.value)}
       />
       <TextField
         size='small'
