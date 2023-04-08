@@ -8,9 +8,9 @@ import {
 import { IPropsLogin } from '../../../common/types/auth';
 
 const Login: React.FC<IPropsLogin> = ({
-  setEmail,
-  setPassword,
   navigate,
+  register,
+  errors,
 }): JSX.Element => {
   return (
     <>
@@ -21,6 +21,7 @@ const Login: React.FC<IPropsLogin> = ({
         Введите ваш логин и пароль
       </Typography>
       <TextField
+        error={!!errors.email}
         size='small'
         margin='normal'
         label='Email'
@@ -29,9 +30,11 @@ const Login: React.FC<IPropsLogin> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setEmail(e.target.value)}
+        helperText={errors.email ? `${errors.email.message}` : ''}
+        {...register('email', { required: 'Это обязательное поле' })}
       />
       <TextField
+        error={!!errors.password}
         size='small'
         type='password'
         margin='normal'
@@ -41,15 +44,18 @@ const Login: React.FC<IPropsLogin> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setPassword(e.target.value)}
+        {...register('password', {
+          required: 'Это обязательное поле',
+          minLength: 4,
+        })}
+        helperText={errors.password ? `${errors.password.message}` : ''}
       />
       <Button
         type='submit'
         sx={{
           display: 'flex',
           alignSelf: 'center',
-          marginTop: 2,
-          marginBottom: 2,
+          my: 2,
           width: '60%',
           borderRadius: 5,
         }}
@@ -71,9 +77,6 @@ const Login: React.FC<IPropsLogin> = ({
         >
           <Typography color={'primary'}>Регистрация</Typography>
         </ListItemButton>
-        {/* <Button variant='text' size='small' sx={{ ml: 1 }}>
-          Регистрация
-        </Button> */}
       </Box>
     </>
   );
