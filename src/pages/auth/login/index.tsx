@@ -1,11 +1,6 @@
-import {
-  Box,
-  Button,
-  ListItemButton,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, ListItemButton, TextField, Typography } from '@mui/material';
 import { IPropsLogin } from '../../../common/types/auth';
+import AuthButton from '../../../components/helpers/auth-button';
 
 const Login: React.FC<IPropsLogin> = ({
   navigate,
@@ -30,8 +25,8 @@ const Login: React.FC<IPropsLogin> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
+        {...register('email')}
         helperText={errors.email ? `${errors.email.message}` : ''}
-        {...register('email', { required: 'Это обязательное поле' })}
       />
       <TextField
         error={!!errors.password}
@@ -44,25 +39,12 @@ const Login: React.FC<IPropsLogin> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        {...register('password', {
-          required: 'Это обязательное поле',
-          minLength: 4,
-        })}
+        {...register('password')}
         helperText={errors.password ? `${errors.password.message}` : ''}
       />
-      <Button
-        type='submit'
-        sx={{
-          display: 'flex',
-          alignSelf: 'center',
-          my: 2,
-          width: '60%',
-          borderRadius: 5,
-        }}
-        variant='contained'
-      >
+      <AuthButton type='submit' variant='contained'>
         Войти
-      </Button>
+      </AuthButton>
       <Box
         sx={{
           display: { sm: 'flex' },

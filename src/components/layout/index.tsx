@@ -22,7 +22,11 @@ const Layout: FC = (): JSX.Element => {
         setIsOpen={setIsOpen}
       />
       <Stack flexGrow={1}>
-        <TopBar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <TopBar
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          isNonMobile={isNonMobile}
+        />
         <Outlet />
       </Stack>
     </Box>

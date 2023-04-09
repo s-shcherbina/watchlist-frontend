@@ -15,11 +15,16 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { ColorModeContext } from '../../App';
+import { ITopBarProps } from '../../common/types/top-bar';
 import { useAppSelector } from '../../utils/hooks';
 
-const TopBar = ({ isOpen, setIsOpen }: any) => {
+const TopBar: FC<ITopBarProps> = ({
+  isOpen,
+  setIsOpen,
+  isNonMobile,
+}): JSX.Element => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const { user } = useAppSelector((state) => state.auth.user);
@@ -37,8 +42,6 @@ const TopBar = ({ isOpen, setIsOpen }: any) => {
           sx={{
             justifyContent: 'space-between',
             alignItems: 'center',
-            // px: 4,
-            // py: 2,
           }}
         >
           <Box display='flex' gap={1} alignItems='center'>

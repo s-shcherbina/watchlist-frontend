@@ -1,19 +1,11 @@
-import {
-  Box,
-  Button,
-  ListItemButton,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { IPropsRegister } from '../../../common/types/auth';
+import { Box, ListItemButton, TextField, Typography } from '@mui/material';
+import { IPropsLogin } from '../../../common/types/auth';
+import AuthButton from '../../../components/helpers/auth-button';
 
-const Register: React.FC<IPropsRegister> = ({
-  setName,
-  setUsername,
-  // setEmail,
-  // setPassword,
-  setConfirmPassword,
+const Register: React.FC<IPropsLogin> = ({
   navigate,
+  register,
+  errors,
 }): JSX.Element => {
   return (
     <>
@@ -24,6 +16,7 @@ const Register: React.FC<IPropsRegister> = ({
         Введите данные для регистрации
       </Typography>
       <TextField
+        error={!!errors.name}
         size='small'
         margin='normal'
         label='Имя'
@@ -32,9 +25,11 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setName(e.target.value)}
+        helperText={errors.name ? `${errors.name.message}` : ''}
+        {...register('name')}
       />
       <TextField
+        error={!!errors.username}
         size='small'
         margin='normal'
         label='Username'
@@ -43,9 +38,11 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setUsername(e.target.value)}
+        helperText={errors.username ? `${errors.username.message}` : ''}
+        {...register('username')}
       />
       <TextField
+        error={!!errors.email}
         size='small'
         margin='normal'
         label='Email'
@@ -54,9 +51,11 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        // onChange={(e) => setEmail(e.target.value)}
+        helperText={errors.email ? `${errors.email.message}` : ''}
+        {...register('email')}
       />
       <TextField
+        error={!!errors.password}
         size='small'
         type='password'
         margin='normal'
@@ -66,9 +65,11 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        // onChange={(e) => setPassword(e.target.value)}
+        helperText={errors.password ? `${errors.password.message}` : ''}
+        {...register('password')}
       />
       <TextField
+        error={!!errors.confirmPassword}
         size='small'
         type='password'
         margin='normal'
@@ -78,22 +79,14 @@ const Register: React.FC<IPropsRegister> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        helperText={
+          errors.confirmPassword ? `${errors.confirmPassword.message}` : ''
+        }
+        {...register('confirmPassword')}
       />
-      <Button
-        type='submit'
-        sx={{
-          display: 'flex',
-          alignSelf: 'center',
-          marginTop: 2,
-          marginBottom: 2,
-          width: '60%',
-          borderRadius: 5,
-        }}
-        variant='contained'
-      >
+      <AuthButton type='submit' variant='contained'>
         Регистрация
-      </Button>
+      </AuthButton>
       <Box
         sx={{
           display: { sm: 'flex' },

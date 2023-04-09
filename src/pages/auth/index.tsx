@@ -1,5 +1,4 @@
-import { Paper } from '@mui/material';
-import { useState } from 'react';
+import { Box, Paper, Stack } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppErrors } from '../../common/errors';
 import { login } from '../../store/slice/auth';
@@ -8,7 +7,8 @@ import { useAppDispatch } from '../../utils/hooks';
 import Login from './login';
 import Register from './register';
 import { useForm } from 'react-hook-form';
-import './style.css';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoginSchema, RegisterSchema } from '../../utils/yup';
 
 const AuthRootPage: React.FC = (): JSX.Element => {
   const { pathname } = useLocation();
@@ -18,22 +18,11 @@ const AuthRootPage: React.FC = (): JSX.Element => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
-
-  console.log('errors', errors);
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-
-  // const handleSubmitForm = async (e: { preventDefault: () => void }) => {
-  // e.preventDefault();
+  } = useForm({
+    resolver: yupResolver(pathname === '/login' ? LoginSchema : RegisterSchema),
+  });
 
   const handleSubmitForm = async (data: any) => {
-    console.log('data', data);
-
     if (pathname === '/login') {
       try {
         const userData = { email: data.email, password: data.password };
@@ -45,9 +34,14 @@ const AuthRootPage: React.FC = (): JSX.Element => {
       }
     }
     if (pathname === '/register')
-      if (password === confirmPassword) {
+      if (data.password === data.confirmPassword) {
         try {
-          const newUserData = { firstName: name, username, email, password };
+          const newUserData = {
+            firstName: data.name,
+            username: data.username,
+            email: data.email,
+            password: data.password,
+          };
           const newUser = await instance.post('auth/register', newUserData);
           dispatch(login(newUser.data));
           navigate('/');
@@ -61,13 +55,18 @@ const AuthRootPage: React.FC = (): JSX.Element => {
 
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)}>
-      <div className='root'>
+      <Box
+        display='flex'
+        width='100vw'
+        height='100vh'
+        justifyContent='center'
+        alignItems='center'
+      >
         <Paper
           elevation={6}
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            m: 'auto',
             p: { xs: 1, sm: 5 },
             width: { xs: 300, sm: 500, md: 600 },
             borderRadius: 6,
@@ -76,17 +75,10 @@ const AuthRootPage: React.FC = (): JSX.Element => {
           {pathname === '/login' ? (
             <Login navigate={navigate} register={register} errors={errors} />
           ) : pathname === '/register' ? (
-            <Register
-              setName={setName}
-              setUsername={setUsername}
-              setConfirmPassword={setConfirmPassword}
-              navigate={navigate}
-              register={register}
-              errors={errors}
-            />
+            <Register navigate={navigate} register={register} errors={errors} />
           ) : null}
         </Paper>
-      </div>
+      </Box>
     </form>
   );
 };
