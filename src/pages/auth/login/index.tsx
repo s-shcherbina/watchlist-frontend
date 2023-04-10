@@ -6,6 +6,7 @@ const Login: React.FC<IPropsLogin> = ({
   navigate,
   register,
   errors,
+  loading,
 }): JSX.Element => {
   return (
     <>
@@ -42,7 +43,7 @@ const Login: React.FC<IPropsLogin> = ({
         {...register('password')}
         helperText={errors.password ? `${errors.password.message}` : ''}
       />
-      <AuthButton type='submit' variant='contained'>
+      <AuthButton type='submit' variant='contained' loading={loading}>
         Войти
       </AuthButton>
       <Box

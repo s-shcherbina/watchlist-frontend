@@ -6,6 +6,7 @@ const Register: React.FC<IPropsLogin> = ({
   navigate,
   register,
   errors,
+  loading,
 }): JSX.Element => {
   return (
     <>
@@ -25,8 +26,8 @@ const Register: React.FC<IPropsLogin> = ({
           borderRadius: 5,
           '& fieldset': { borderRadius: 5 },
         }}
-        helperText={errors.name ? `${errors.name.message}` : ''}
-        {...register('name')}
+        helperText={errors.firstName ? `${errors.firstName.message}` : ''}
+        {...register('firstName')}
       />
       <TextField
         error={!!errors.username}
@@ -84,7 +85,7 @@ const Register: React.FC<IPropsLogin> = ({
         }
         {...register('confirmPassword')}
       />
-      <AuthButton type='submit' variant='contained'>
+      <AuthButton type='submit' variant='contained' loading={loading}>
         Регистрация
       </AuthButton>
       <Box

@@ -7,6 +7,7 @@ export interface IPropsLogin<
   navigate: (to: string) => void;
   register: UseFormRegister<TFieldValues>;
   errors: FieldErrors<TFieldValues>;
+  loading: boolean;
 }
 
 export interface IAuthState {
@@ -27,6 +28,7 @@ export interface IPublicUser {
   updatedAt: string;
   watchlist: [IWatchlist];
 }
+
 interface IWatchlist {
   id: number | null;
   name: string;
@@ -35,3 +37,21 @@ interface IWatchlist {
   updatedAt: string;
   user: number | null;
 }
+
+export interface ILoginData {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterData {
+  firstName: string;
+  username: string;
+}
+
+// export interface IRegisterData {
+//   email: string;
+//   password: string;
+//   // confirmPassword: string;
+//   firstName: string;
+//   username: string;
+// }

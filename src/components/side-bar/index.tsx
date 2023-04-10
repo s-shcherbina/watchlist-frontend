@@ -81,6 +81,7 @@ const SideBar: FC<ISidebarProps> = ({
                 path={item.path}
                 icon={item.icon}
                 name={item.name}
+                click={() => localStorage.removeItem('token')}
               />
             ))}
             <Divider sx={{ mt: 3 }} />
@@ -89,6 +90,10 @@ const SideBar: FC<ISidebarProps> = ({
               path={logout.path}
               icon={logout.icon}
               name={logout.name}
+              click={() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('name');
+              }}
             />
           </List>
         </Drawer>
