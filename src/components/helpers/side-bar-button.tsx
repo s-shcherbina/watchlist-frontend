@@ -13,6 +13,7 @@ const SideBarButton: FC<ISideBarButton> = ({
   path,
   icon,
   name,
+  click,
 }): JSX.Element => {
   const navigate = useNavigate();
   return (
@@ -32,6 +33,7 @@ const SideBarButton: FC<ISideBarButton> = ({
         }}
         onClick={() => {
           navigate(path);
+          click();
         }}
       >
         <ListItemIcon

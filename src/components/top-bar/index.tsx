@@ -18,7 +18,6 @@ import {
 import { FC, useContext } from 'react';
 import { ColorModeContext } from '../../App';
 import { ITopBarProps } from '../../common/types/top-bar';
-import { useAppSelector } from '../../utils/hooks';
 
 const TopBar: FC<ITopBarProps> = ({
   isOpen,
@@ -27,7 +26,6 @@ const TopBar: FC<ITopBarProps> = ({
 }): JSX.Element => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  const { user } = useAppSelector((state) => state.auth.user);
 
   return (
     <>
@@ -49,7 +47,7 @@ const TopBar: FC<ITopBarProps> = ({
               <MenuOutlined />
             </IconButton>
             <Typography variant='h6' sx={{ color: theme.palette.text.primary }}>
-              Welcome, {user.firstName}
+              Welcome, {localStorage.getItem('name')}
             </Typography>
           </Box>
           <Box display='flex'>

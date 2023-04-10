@@ -1,6 +1,7 @@
-import { Button, styled } from '@mui/material';
+import { styled } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
-const AuthButton = styled(Button)({
+const AuthButton = styled(LoadingButton)({
   display: 'flex',
   alignSelf: 'center',
   width: '60%',

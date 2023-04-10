@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IAuthState, IPublicUser } from '../../../common/types/auth';
+import { loginUser, registerUser } from '../../thunks/auth-thunks';
 
 const initialState: IAuthState = {
   user: {
@@ -13,18 +14,36 @@ const initialState: IAuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    login(state, action) {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.pending, (state, action) => {
+      state.isLogged = false;
+      state.isLoading = true;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLogged = true;
-
-      // console.log('action', action.payload);
-      // console.log('user', state.user);
-      // console.log('isLogged', state.isLogged);
-    },
+      state.isLoading = false;
+      console.log(state.isLogged);
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.isLogged = false;
+      state.isLoading = false;
+    });
+    builder.addCase(registerUser.pending, (state, action) => {
+      state.isLogged = false;
+      state.isLoading = true;
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLogged = true;
+      state.isLoading = false;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.isLogged = false;
+      state.isLoading = false;
+    });
   },
 });
-
-export const { login } = authSlice.actions;
 
 export default authSlice.reducer;

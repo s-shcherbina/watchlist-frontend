@@ -12,4 +12,5 @@ export interface ISideBarButton {
   path: string;
   icon: ReactNode;
   name: string;
+  click: () => void;
 }
