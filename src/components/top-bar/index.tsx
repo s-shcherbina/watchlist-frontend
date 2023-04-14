@@ -68,6 +68,7 @@ const TopBar: FC<ITopBarProps> = ({
               sx={{
                 display: 'flex',
                 bgcolor: theme.palette.action.selected,
+                border: `1px solid ${theme.palette.divider}`,
                 borderRadius: 1,
                 width: 300,
               }}
